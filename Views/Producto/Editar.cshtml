@@ -1,0 +1,21 @@
+@model Productos
+
+<h1>Editar producto</h1>
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="nombreproducto" class="control-label"></label>
+        <input asp-for="nombreproducto" class="form-control" />
+        <span asp-validation-for="nombreproducto" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="preciounitario" class="control-label"></label>
+        <input asp-for="preciounitario" class="form-control" />
+        <span asp-validation-for="preciounitario" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
