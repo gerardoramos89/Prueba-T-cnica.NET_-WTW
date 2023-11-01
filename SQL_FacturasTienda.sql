@@ -219,6 +219,15 @@ BEGIN
     VALUES (@idfactura, @idproducto, @cantidadproducto, @preciounitarioproducto, @subtototalproducto, @notas)
 END
 
+
+--SPIObtenerproductos
+GO 
+CREATE PROCEDURE SPIObtenerproductos
+AS BEGIN
+SELECT * FROM CAT.Productos
+END
+
+
 -- Datos de prueba
 EXEC SPIcrearproducto 'Ashoka', '1111111111111111111111111111111111111111
 1111111111111111111111111111111111111111
