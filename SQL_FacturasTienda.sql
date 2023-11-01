@@ -227,6 +227,13 @@ AS BEGIN
 SELECT * FROM CAT.Productos
 END
 
+--SPIObtenerFacturas
+GO 
+CREATE PROCEDURE SPIObtenerFacturas
+AS BEGIN
+SELECT * FROM TBL.Factura
+END
+
 
 -- Datos de prueba
 EXEC SPIcrearproducto 'Ashoka', '1111111111111111111111111111111111111111

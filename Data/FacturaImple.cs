@@ -18,7 +18,7 @@ namespace MVC_Dapper.Data
         {
             using (var conexion = _conexion.ObtenerConexion())
             {
-                return conexion.Query<Factura>("SPIObtenerproductos", commandType: CommandType.StoredProcedure).ToList();
+                return conexion.Query<Factura>("SPIObtenerFacturas", commandType: CommandType.StoredProcedure).ToList();
             }
         }
 
