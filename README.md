@@ -12,3 +12,7 @@ Prueba Técnica.NET_ WTW     |     Double V Partners
 
 ![image](https://github.com/gerardoramos89/Prueba-T-cnica.NET_-WTW/assets/57040617/46fbbb20-5d43-4777-8845-0176070a9c8b)
 
+- Se Crea lista Clientes Facturas
+
+
+![image](https://github.com/gerardoramos89/Prueba-T-cnica.NET_-WTW/assets/57040617/af1b935c-2236-4638-925a-c55916200c50)
