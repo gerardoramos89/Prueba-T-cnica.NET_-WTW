@@ -4,20 +4,20 @@ using MVC_Dapper.Models;
 
 namespace MVC_Dapper.Data
 {
-    public class FacturaImple : IFactura
+    public class ClientesImple : IClientes
     {
         private readonly Conexion _conexion;
 
-        public FacturaImple(Conexion conexion)
+        public ClientesImple(Conexion conexion)
         {
             _conexion = conexion;
         }
 
-        public IEnumerable<Factura> ObtenerFactura()
+        public IEnumerable<Clientes> ObtenerClientes()
         {
             using (var conexion = _conexion.ObtenerConexion())
             {
-                return conexion.Query<Factura>("SPIObtenerFacturas", commandType: CommandType.StoredProcedure).ToList();
+                return conexion.Query<Clientes>("SPIObtenerclientes", commandType: CommandType.StoredProcedure).ToList();
             }
         }
 

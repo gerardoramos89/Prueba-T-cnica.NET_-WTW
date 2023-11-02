@@ -55,7 +55,7 @@ CREATE TABLE CAT.TipoCliente
 -- Create table TBL.Clientes
 CREATE TABLE TBL.Clientes
 (
-  id                  INT           AUTO_INCREMENT,
+  id                  INT           NOT NULL IDENTITY,
   razonsocial         NVARCHAR(200) NOT NULL,
   idtipocliente       INT           NOT NULL,
   fechacreacion       DATE          NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE TBL.Clientes
 -- Create table CAT.Productos
 CREATE TABLE CAT.Productos
 (
-  id                        INT           AUTO_INCREMENT,
+  id                        INT           NOT NULL IDENTITY,
   nombreproducto            NVARCHAR(50)  NOT NULL,
   imagenproducto            IMAGE         NULL,
   preciounitario            DECIMAL(18,2) NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE CAT.Productos
 -- Create table TBL.Facturas
 CREATE TABLE TBL.Factura
 (
-  id                        INT           AUTO_INCREMENT,
+  id                        INT           NOT NULL IDENTITY,
   fechaemisionfactura       DATETIME      NOT NULL,
   idCliente                 INT           NOT NULL,
   numerofactura             INT           NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE TBL.Factura
 -- Create table TBL.DetalleFactura
 CREATE TABLE TBL.DetalleFactura
 (
-  id                        INT           AUTO_INCREMENT,
+  id                        INT           NOT NULL IDENTITY,
   idfactura                 INT           NOT NULL,
   idproducto                INT           NOT NULL,
   cantidadproducto          INT           NOT NULL,
@@ -234,6 +234,12 @@ AS BEGIN
 SELECT * FROM TBL.Factura
 END
 
+--SPIObtenerclientes
+GO 
+CREATE PROCEDURE SPIObtenerclientes
+AS BEGIN
+SELECT * FROM TBL.Clientes
+END
 
 -- Datos de prueba
 EXEC SPIcrearproducto 'Ashoka', '1111111111111111111111111111111111111111

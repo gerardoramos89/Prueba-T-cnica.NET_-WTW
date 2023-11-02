@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using MVC_ControlFacturas.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC_Dapper.Data;
 using MVC_Dapper.Models;
 
@@ -16,8 +16,11 @@ namespace MVC_Dapper.Controllers
 
         public IActionResult Index()
         {
-            var producto = _ifactura.ObtenerFactura();
-            return View(producto);
+
+            var facturas = _ifactura.ObtenerFactura();
+
+            return View(facturas);
+
         }
 
         public IActionResult Crear()
@@ -25,5 +28,6 @@ namespace MVC_Dapper.Controllers
             return View();
         }
 
+ 
     }
 }

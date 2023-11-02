@@ -7,6 +7,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton(new Conexion(builder.Configuration.GetConnectionString("conexion")));
 builder.Services.AddScoped<IProducto, ProductoImple>();
 builder.Services.AddScoped<IFactura, FacturaImple>();
+builder.Services.AddScoped<IClientes, ClientesImple>();
 
 var app = builder.Build();
 

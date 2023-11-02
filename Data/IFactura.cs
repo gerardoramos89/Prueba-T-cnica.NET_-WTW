@@ -1,4 +1,4 @@
-using MVC_ControlFacturas.Models;
+using MVC_Dapper.Models;
 
 namespace MVC_Dapper.Data
 {

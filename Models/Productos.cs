@@ -1,6 +1,3 @@
-
-
-
 namespace MVC_Dapper.Models
 {
     public class Productos

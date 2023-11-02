@@ -1,4 +1,4 @@
-﻿namespace MVC_ControlFacturas.Models
+﻿namespace MVC_Dapper.Models
 {
     public class Factura
     {
