@@ -22,3 +22,7 @@ Lista de Actividades trabajadas en la prueba
 
 
 ![image](https://github.com/gerardoramos89/Prueba-T-cnica.NET_-WTW/assets/57040617/af1b935c-2236-4638-925a-c55916200c50)
+
+9)Lista base de productos
+
+![image](https://github.com/gerardoramos89/Prueba-T-cnica.NET_-WTW/assets/57040617/cfab351b-b368-4377-b1ff-65910312c30d)
