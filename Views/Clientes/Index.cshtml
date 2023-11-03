@@ -1,4 +1,9 @@
 @model IEnumerable<Clientes>
+@{
+    decimal totalfactura = ViewBag.totalfactura;
+    decimal impuesto = ViewBag.impuesto;
+    decimal subtotal = ViewBag.subtotal;
+}
 
 <h1>Facturas</h1>
 <p>
@@ -31,7 +36,7 @@
         </tbody>
     </table>
 </div>
-<a asp-action="Detalle" class="btn btn-info">Agregar producto</a>
+<a asp-action="Index" class="btn btn-info">Agregar producto</a>
 <table class="table">
     <thead>
         <tr>
@@ -53,31 +58,89 @@
 
         </th>
 
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>
+            @if (ViewBag.productos.Count > 0)
+            {
+                <label>$ @ViewBag.productos[0].preciounitario</label>
+            }
+            else
+            {
+                <label>No hay imágenes disponibles</label>
+            }
+        </th>
+        <th>
+            <select id="miSelect">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </th>
+        <th>
+            <img src="@ViewBag.productos[0].imagenproducto" alt="IMAGES" />
+
+
+        </th>
+        <th>
+            @if (ViewBag.productos.Count > 0)
+            {
+                byte[] aiImageThumbnailBytes = ViewBag.productos[0].imagenproducto;
+                string base64String = Convert.ToBase64String(ViewBag.productos[0].imagenproducto);
+                <div id="imagenDiv" style="background-image: url('data:image/png;base64,@base64String'); width: 100px; height: 100px;"></div>
+            }
+            else
+            {
+                <div>No hay imagen disponible</div>
+            }
+        </th>
     </tr>
     <tr>
         <th></th>
         <th></th>
         <th></th>
         <th>Sub Total</th>
-        <th>$</th>
+        <th>
+            <label>$ @subtotal</label>
+        </th>
     </tr>
     <tr>
         <th></th>
         <th></th>
         <th></th>
         <th>Impuesto (19%)</th>
-        <th>$</th>
+        <th>
+            <label>$ @impuesto</label>
+        </th>
     </tr>
     <tr>
         <th></th>
         <th></th>
         <th></th>
         <th>Total</th>
-        <th>$</th>
+        <th>
+            <label>$ @totalfactura</label>
+        </th>
     </tr>
 </table>
 <a asp-action="Guardar" class="btn btn-success">Guardar</a>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(document).on('change', '#miSelect', function () {
+            var selectedValue = $(this).val();
+
+            // Realiza una solicitud AJAX al controlador
+            $.ajax({
+                url: '@Url.Action("MiMetodo", "ClientesController")', 
+                data: { selectedValue: selectedValue },
+                success: function (response) {
+                    alert('gerardo')
+                },
+                error: function () {
+                    // Maneja los errores si ocurren durante la solicitud AJAX
+                }
+            });
+        });
+    });
+</script>

@@ -2,8 +2,10 @@
 
 public class MiViewModelFactura
     {
-    public Clientes Clientes { get; set; }
-    public Productos Productos { get; set; }
+    public List<Clientes> Modelos1 { get; set; }
+    public List<Productos> Modelos2 { get; set; }
+
+    public decimal totalfactura { get; set; }
 
 }
 

@@ -11,6 +11,8 @@ namespace MVC_Dapper.Controllers
         private readonly IClientes _iclientes;
         private readonly IFactura _ifactura;
         private readonly IProducto _iproducto;
+        decimal totalfactura = 0;
+        decimal subtotal = 0;
 
 
         public ClientesController(IClientes iclientes, IProducto iproductos)
@@ -24,7 +26,9 @@ namespace MVC_Dapper.Controllers
             var clientes =   _iclientes.ObtenerClientes();
             var productos =   _iproducto.ObtenerProductos();
             ViewBag.productos = productos;
-
+            ViewBag.subtotal = subtotal;
+            ViewBag.totalfactura = totalfactura;
+            ViewBag.impuesto = (19 * totalfactura) / 100;
 
             return View(clientes);
         }
@@ -34,5 +38,12 @@ namespace MVC_Dapper.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult MiMetodo(int selectedValue)
+        {
+            subtotal = selectedValue * subtotal;
+
+            return Json(new { success = true, message = "Operación exitosa" });
+        }
     }
 }
