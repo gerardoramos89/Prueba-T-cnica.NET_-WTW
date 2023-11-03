@@ -12,7 +12,7 @@
 <h1>Facturas</h1>
 <form id="miFormulario">
 <p>
-    <button id="borrarCampos" class="btn btn-success">Nuea Facrtura</button>
+    <button id="nuevafactura" class="btn btn-success">Nuea Facrtura</button>
 </p>
 <div>
 
@@ -26,7 +26,7 @@
         <tbody>
             <tr>
                 <td>
-                    <select id="selectModelo2" name="Modelo2">
+                        <select id="selectClientes" name="selectClientes">
 
                         @foreach (var cliente in Model)
                         {
@@ -55,7 +55,7 @@
     </thead>
     <tr>
         <th>
-            <select id="selectModelo3" name="Modelo3">
+                <select id="selectproducto1" name="selectproducto1">
                 @foreach (var productos in ViewBag.productos)
                 {
                     <option value="@productos.Id">@productos.nombreproducto</option>
@@ -75,7 +75,7 @@
             }
         </th>
         <th>
-            <select id="miSelect">
+                <select id="selectCantidadProducto1">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -131,29 +131,31 @@
 </table>
 </form>
 <script>
-    document.getElementById("borrarCampos").onclick = function () {
-        // Establece el valor del input a una cadena vacía cuando se hace clic en el botón
+    document.getElementById("nuevafactura").onclick = function () {
         document.getElementById("numerofactura").value = '';
     };
+ 
+    var selectClientes = document.getElementById("selectClientes");
+
+    selectClientes.addEventListener("change", function () {
+        var selectedValue = selectClientes.value;
+            alert("Valor seleccionado clientes: " + selectedValue);
+        });
+
+    var selectproducto1 = document.getElementById("selectproducto1");
+
+    selectproducto1.addEventListener("change", function () {
+        var selectedValue = selectproducto1.value;
+        alert("Valor seleccionado producto1: " + selectedValue);
+    });
+
+    var selectCantidadProducto1 = document.getElementById("selectCantidadProducto1");
+
+
+    selectCantidadProducto1.addEventListener("change", function () {
+        var selectedValue = selectCantidadProducto1.value;
+        alert("Valor seleccionado en cantidad: " + selectedValue);
+    });
 </script>
 <a asp-action="Index" class="btn btn-success">Guardar</a>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(document).on('change', '#miSelect', function () {
-            var selectedValue = $(this).val();
-
-            // Realiza una solicitud AJAX al controlador
-            $.ajax({
-                url: '@Url.Action("MiMetodo", "ClientesController")', 
-                data: { selectedValue: selectedValue },
-                success: function (response) {
-                    alert('gerardo')
-                },
-                error: function () {
-                    // Maneja los errores si ocurren durante la solicitud AJAX
-                }
-            });
-        });
-    });
-</script>

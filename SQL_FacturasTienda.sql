@@ -284,6 +284,6 @@ EXEC SPIcrearproducto 'Ashoka', '1111111111111111111111111111111111111111
 1111111111111111111111111111111111111111', 1, 'ext';
 EXEC SPIcreartipocliente 'Natural';
 EXEC SPIcreartipocliente 'Juridico';
-EXEC SPIcrearcliente 'SAS', 1, '2023-10-31','Aaron Rogers';
+EXEC SPIcrearcliente 'SAS', 1, '2023-10-31','Gerardo';
 EXEC SPIcrearfactura '2023-10-31',1,1,0,0,0,0;
 EXEC SPIcreardetallefactura 1,1,1,1,1,'notafactura'
