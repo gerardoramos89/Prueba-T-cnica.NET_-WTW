@@ -64,10 +64,11 @@
 
         </th>
 
-        <th>
+            <th>
+                $
             @if (ViewBag.productos.Count > 0)
             {
-                <label>$ @ViewBag.productos[0].preciounitario</label>
+                    <label id="preciounitario">@ViewBag.productos[0].preciounitario</label>
             }
             else
             {
@@ -89,16 +90,7 @@
 
         </th>
         <th>
-            @if (ViewBag.productos.Count > 0)
-            {
-                byte[] aiImageThumbnailBytes = ViewBag.productos[0].imagenproducto;
-                string base64String = Convert.ToBase64String(ViewBag.productos[0].imagenproducto);
-                <div id="imagenDiv" style="background-image: url('data:image/png;base64,@base64String'); width: 100px; height: 100px;"></div>
-            }
-            else
-            {
-                <div>No hay imagen disponible</div>
-            }
+                $<label id="SubtotalProducto1"></label>
         </th>
     </tr>
     <tr>
@@ -107,7 +99,7 @@
         <th></th>
         <th>Sub Total</th>
         <th>
-            <label>$ @subtotal</label>
+                $ <label id="SubtotalProductos">@subtotal</label>
         </th>
     </tr>
     <tr>
@@ -116,7 +108,7 @@
         <th></th>
         <th>Impuesto (19%)</th>
         <th>
-            <label>$ @impuesto</label>
+                $<label id="impuesto">@impuesto</label>
         </th>
     </tr>
     <tr>
@@ -125,7 +117,7 @@
         <th></th>
         <th>Total</th>
         <th>
-            <label>$ @totalfactura</label>
+                $<label id="totalfactura">$ @totalfactura</label>
         </th>
     </tr>
 </table>
@@ -153,8 +145,19 @@
 
 
     selectCantidadProducto1.addEventListener("change", function () {
-        var selectedValue = selectCantidadProducto1.value;
-        alert("Valor seleccionado en cantidad: " + selectedValue);
+        var selectedCantidadProducto1 = selectCantidadProducto1.value;
+
+        var preciounitarioproducto1 = document.getElementById("preciounitario");
+        var Numeropreciounitarioproducto1 = parseFloat(preciounitarioproducto1.textContent);
+
+        document.getElementById("SubtotalProducto1").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1;
+
+        document.getElementById("SubtotalProductos").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1;
+
+        document.getElementById("impuesto").textContent = ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
+
+        document.getElementById("totalfactura").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1 + ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
+
     });
 </script>
 <a asp-action="Index" class="btn btn-success">Guardar</a>
