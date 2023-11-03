@@ -1,4 +1,6 @@
-﻿namespace MVC_Dapper.Models
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace MVC_Dapper.Models
 {
     public class Clientes
     {

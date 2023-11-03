@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace MVC_Dapper.Models
 {
     public class Productos
@@ -8,5 +10,9 @@ namespace MVC_Dapper.Models
         public decimal preciounitario { get; set; }
         public string? ext { get; set; }
 
+        public static implicit operator Productos(List<SelectListItem> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

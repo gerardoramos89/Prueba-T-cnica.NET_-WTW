@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using MVC_Dapper.Data;
-namespace MVC_ControlFacturas.Models
-{
-    public class MiViewModelFactura
+﻿namespace MVC_Dapper.Models;
+
+public class MiViewModelFactura
     {
-        public IEnumerable<SelectListItem> ListaItems { get; set; }
-        public int ItemSeleccionadoId { get; set; }
-    }
+    public Clientes Clientes { get; set; }
+    public Productos Productos { get; set; }
+
 }
+

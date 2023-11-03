@@ -17,10 +17,10 @@
                 <td>
                     <select id="selectModelo2" name="Modelo2">
 
-                    @foreach (var cliente in Model)
-                    {
+                        @foreach (var cliente in Model)
+                        {
                             <option value="@cliente.Id">@cliente.rfc</option>
-                    }
+                        }
                     </select>
             </td>
                 <td>
@@ -42,6 +42,22 @@
             <th>totales</th>
         </tr>
     </thead>
+    <tr>
+        <th>
+            <select id="selectModelo3" name="Modelo3">
+                @foreach (var productos in ViewBag.productos)
+                {
+                    <option value="@productos.Id">@productos.nombreproducto</option>
+                }
+            </select>
+
+        </th>
+
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
     <tr>
         <th></th>
         <th></th>
