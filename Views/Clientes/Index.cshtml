@@ -5,11 +5,17 @@
     decimal subtotal = ViewBag.subtotal;
 }
 
+
+
+
+
 <h1>Facturas</h1>
+<form id="miFormulario">
 <p>
-    <a asp-action="Crear" class="btn btn-danger">Nueva</a>
+    <button id="borrarCampos" class="btn btn-success">Nuea Facrtura</button>
 </p>
 <div>
+
     <table class="table">
         <thead>
             <tr>
@@ -29,7 +35,7 @@
                     </select>
             </td>
                 <td>
-                    <input type="text" placeholder="Numero" name="usernameField" id="username" runat="server">
+                    <input type="number" placeholder="Numero" name="usernameField" id="numerofactura" runat="server">
                 </td>
             </tr>
 
@@ -123,7 +129,14 @@
         </th>
     </tr>
 </table>
-<a asp-action="Guardar" class="btn btn-success">Guardar</a>
+</form>
+<script>
+    document.getElementById("borrarCampos").onclick = function () {
+        // Establece el valor del input a una cadena vacía cuando se hace clic en el botón
+        document.getElementById("numerofactura").value = '';
+    };
+</script>
+<a asp-action="Index" class="btn btn-success">Guardar</a>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
