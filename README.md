@@ -29,4 +29,4 @@ Lista de Actividades trabajadas en la prueba
 
 10) Se detectan 3 errores en consola. la imagen de los productos, el cambio del Select
 
-11) $(document).on('change', '#miSelect', function () {
+![image](https://github.com/gerardoramos89/Prueba-T-cnica.NET_-WTW/assets/57040617/b774e7a6-f1bd-4fc0-a795-303fd9b439ee)
