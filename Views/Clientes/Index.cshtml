@@ -125,8 +125,8 @@
         <input type="hidden" name="idcliente" id="idcliente" />
         <input type="hidden" name="nfactura" id="nfactura" />
         <input type="hidden" name="ntotalproductos" id="ntotalproductos" />
-        <input type="hidden" name="subtotalfactura" id="subtotalfactura" />
-        <input type="hidden" name="totalimpuestos" id="totalimpuestos" />
+        <input type="hidden" step="0.01"  name="subtotalfactura" id="subtotalfactura" />
+        <input type="hidden" step="0.01"  name="totalimpuestos" id="totalimpuestos" />
         <input type="hidden" name="itotalfactura" id="itotalfactura" />
 
 
@@ -172,6 +172,8 @@
                 document.getElementById("idcliente").value = selectClientes;
                 document.getElementById("nfactura").value = numerofactura;
                 document.getElementById("ntotalproductos").value = document.getElementById("selectCantidadProducto1").value;
+
+                alert(document.getElementById("totalimpuestos").value)
                 // Envía el formulario
                 document.getElementById("formulariofactura").submit();
             }
@@ -206,19 +208,22 @@
         var Numeropreciounitarioproducto1 = parseFloat(preciounitarioproducto1.textContent);
 
         document.getElementById("SubtotalProducto1").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1;
-
         document.getElementById("SubtotalProductos").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1;
 
         document.getElementById("subtotalfactura").value = selectedCantidadProducto1 * Numeropreciounitarioproducto1;
+        document.getElementById("subtotalfactura").value = document.getElementById("subtotalfactura").value.replace(/\./g, ',');
 
         document.getElementById("impuesto").textContent = ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
 
-        document.getElementById("totalimpuestos").vale = ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
+        document.getElementById("totalimpuestos").value = ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
+        document.getElementById("totalimpuestos").value = document.getElementById("totalimpuestos").value.replace(/\./g, ',');
+
 
         document.getElementById("totalfactura").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1 + ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
 
         document.getElementById("itotalfactura").value = selectedCantidadProducto1 * Numeropreciounitarioproducto1 + ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
 
+        document.getElementById("itotalfactura").value = document.getElementById("itotalfactura").value.replace(/\./g, ',');
 
     });
 </script>
