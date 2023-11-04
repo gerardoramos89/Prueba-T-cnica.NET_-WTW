@@ -10,8 +10,8 @@
 
 
 <h1>Facturas</h1>
-<form id="miFormulario">
-<p>
+<form asp-action="Crear" id="formulariofactura" method="post">
+    <p>
     <button id="nuevafactura" class="btn btn-success">Nuea Facrtura</button>
 </p>
 <div>
@@ -35,7 +35,7 @@
                     </select>
             </td>
                 <td>
-                    <input type="number" placeholder="Numero" name="usernameField" id="numerofactura" runat="server">
+                        <input type="text" placeholder="Numero" name="numerofactura" id="numerofactura" value="0">
                 </td>
             </tr>
 
@@ -77,6 +77,7 @@
         </th>
         <th>
                 <select id="selectCantidadProducto1">
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -117,12 +118,67 @@
         <th></th>
         <th>Total</th>
         <th>
-                $<label id="totalfactura">$ @totalfactura</label>
+                $<label id="totalfactura">@totalfactura</label>
         </th>
     </tr>
+        <input type="hidden" name="idcliente" id="idcliente" />
+        <input type="hidden" name="nfactura" id="nfactura" />
+        <input type="hidden" name="ntotalproductos" id="ntotalproductos" />
+        <input type="hidden" name="subtotalfactura" id="subtotalfactura" />
+        <input type="hidden" name="totalimpuestos" id="totalimpuestos" />
+        <input type="hidden" name="itotalfactura" id="itotalfactura" />
+
+
 </table>
+    <button type="button" id="enviarDatos" class="btn btn-primary">Guardar</button>
 </form>
+<br />
+<div id="mensajeError"></div>
+
 <script>
+    document.getElementById("enviarDatos").onclick = function () {
+        // Obtiene el valor del campo de entrada
+        var nf= document.getElementById("numerofactura");
+        var numerofactura = parseFloat(nf.value);
+
+        // Verifica si el campo está vacío
+        if (numerofactura < 1 || numerofactura === "" || isNaN(numerofactura)) {
+
+            event.preventDefault();
+
+            // Muestra un mensaje de error
+            document.getElementById("mensajeError").textContent = "El campo Numero de Factura, no puede estar vacío.";
+            document.getElementById("mensajeError").className = "btn btn-danger";
+            // Cancela el envío del formulario
+
+
+        }else{
+
+            var totalfactura = document.getElementById("totalfactura");
+
+            var Total = parseFloat(totalfactura.textContent);
+
+            if (Total === 0) {
+                document.getElementById("mensajeError").textContent = "El campo Total Factura, no puede estar en Cero.";
+                document.getElementById("mensajeError").className = "btn btn-danger";
+                event.preventDefault();
+
+            } else {
+                // Obtén los valores numéricos de los labels
+                var selectClientes = parseFloat(document.getElementById("selectClientes").value);
+
+                // Asigna los valores a campos ocultos en el formulario
+                document.getElementById("idcliente").value = selectClientes;
+                document.getElementById("nfactura").value = numerofactura;
+                document.getElementById("ntotalproductos").value = document.getElementById("selectCantidadProducto1").value;
+                // Envía el formulario
+                document.getElementById("formulariofactura").submit();
+            }
+        }
+        
+    };
+
+
     document.getElementById("nuevafactura").onclick = function () {
         document.getElementById("numerofactura").value = '';
     };
@@ -131,14 +187,12 @@
 
     selectClientes.addEventListener("change", function () {
         var selectedValue = selectClientes.value;
-            alert("Valor seleccionado clientes: " + selectedValue);
         });
 
     var selectproducto1 = document.getElementById("selectproducto1");
 
     selectproducto1.addEventListener("change", function () {
         var selectedValue = selectproducto1.value;
-        alert("Valor seleccionado producto1: " + selectedValue);
     });
 
     var selectCantidadProducto1 = document.getElementById("selectCantidadProducto1");
@@ -154,11 +208,17 @@
 
         document.getElementById("SubtotalProductos").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1;
 
+        document.getElementById("subtotalfactura").value = selectedCantidadProducto1 * Numeropreciounitarioproducto1;
+
         document.getElementById("impuesto").textContent = ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
+
+        document.getElementById("totalimpuestos").vale = ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
 
         document.getElementById("totalfactura").textContent = selectedCantidadProducto1 * Numeropreciounitarioproducto1 + ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
 
+        document.getElementById("itotalfactura").value = selectedCantidadProducto1 * Numeropreciounitarioproducto1 + ((selectedCantidadProducto1 * Numeropreciounitarioproducto1) * 19) / 100;
+
+
     });
 </script>
-<a asp-action="Index" class="btn btn-success">Guardar</a>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

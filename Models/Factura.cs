@@ -7,5 +7,14 @@
         public DateTime fechaemisionfactura { get; set; }
         public int numerofactura { get; set; }
 
+        public int numerototalarticulos { get; set; }
+
+        public decimal subtotalfactura { get; set; }
+
+        public decimal totalimpuesto { get; set; }
+
+        public decimal totalfactura { get; set; }
+
+
     }
 }

@@ -15,10 +15,11 @@ namespace MVC_Dapper.Controllers
         decimal subtotal = 0;
 
 
-        public ClientesController(IClientes iclientes, IProducto iproductos)
+        public ClientesController(IClientes iclientes, IProducto iproductos, IFactura ifactura)
         {
             _iclientes = iclientes;
             _iproducto = iproductos;
+            _ifactura = ifactura;
         }
 
         public IActionResult Index()
@@ -33,17 +34,35 @@ namespace MVC_Dapper.Controllers
             return View(clientes);
         }
 
-        public IActionResult Crear()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult MiMetodo(int selectedValue)
         {
             subtotal = selectedValue * subtotal;
 
-            return Json(new { success = true, message = "Operación exitosa" });
+            return RedirectToAction("Factura");
+        }
+
+        [HttpPost]
+        public IActionResult Crear(int idcliente, int nfactura, int ntotalproductos, decimal totalimpuestos, decimal subtotalfactura, decimal itotalfactura)
+        {
+            var fechaActual = new DateTime();
+            DateTime thisDay = DateTime.Now;
+
+            // Formatea la fecha como yyyy-mm-dd (formato estándar para input tipo 'date')
+            Factura ModelFactura = new Factura
+            {
+                idCliente = idcliente,
+                numerofactura = nfactura,
+                fechaemisionfactura = thisDay,
+                totalfactura = itotalfactura,
+                subtotalfactura = subtotalfactura,
+                totalimpuesto = totalimpuestos,
+                numerototalarticulos = ntotalproductos
+            };
+            _ifactura.CrearFactura(ModelFactura);
+
+
+            return RedirectToAction("Index", "Factura");
         }
     }
 }
